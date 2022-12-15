@@ -9,7 +9,7 @@ from sklearn.ensemble import BaggingClassifier
 import lightgbm as lgb
 from xgboost import XGBClassifier
 
-data = pd.read_csv('ReplicatedAcousticFeatures-ParkinsonDataset.csv')
+data = pd.read_csv('data/ReplicatedAcousticFeatures-ParkinsonDataset.csv')
 x = data.drop(['Status'], axis=1)
 y = data['Status']
 
@@ -29,10 +29,10 @@ def parkinson(csv_file):
    prediction = model.predict(X)
    
    if prediction == 1:
-      return  image.load_img('positive_image.jpg'), "This patient has Parkinson's Disease"
+      return  image.load_img('data/positive_image.jpg'), "This patient has Parkinson's Disease"
       
    else:
-      return  image.load_img('negative_image.jpg'), "There is no sign of disease in this patient"
+      return  image.load_img('data/negative_image.jpg'), "There is no sign of disease in this patient"
 
 with gr.Blocks(css="#img0, #img1 {background:#0B0F19}") as app:
     gr.Markdown(
@@ -42,14 +42,14 @@ with gr.Blocks(css="#img0, #img1 {background:#0B0F19}") as app:
     """)
     with gr.Row() as row:
         with gr.Column():
-            img1 = gr.Image('ribbon_image.svg', show_label=False, visible=False)
+            img1 = gr.Image('data/ribbon_image.svg', show_label=False, visible=False)
         with gr.Column():
-            img1 = gr.Image('ribbon_image.svg', show_label=False, elem_id="img0", invert_colors=False).style(full_width=True, height=135)
+            img1 = gr.Image('data/ribbon_image.svg', show_label=False, elem_id="img0", invert_colors=False).style(full_width=True, height=135)
         with gr.Column():
-            img1 = gr.Image('ribbon_image.svg', show_label=False, visible=False)
+            img1 = gr.Image('data/ribbon_image.svg', show_label=False, visible=False)
     with gr.Row() as row:
         with gr.Column():
-            img1 = gr.Image('ribbon_image.svg', show_label=False, visible=False)
+            img1 = gr.Image('data/ribbon_image.svg', show_label=False, visible=False)
         with gr.Column():
             inpt = gr.inputs.File(label='CSV file')
             with gr.Row() as row:
@@ -58,10 +58,10 @@ with gr.Blocks(css="#img0, #img1 {background:#0B0F19}") as app:
             output2 = gr.outputs.Textbox(label='Result:')
             btn = gr.Button("Submit", elem_id="btn0")
         with gr.Column():
-            img1 = gr.Image('ribbon_image.svg', show_label=False, visible=False)
+            img1 = gr.Image('data/ribbon_image.svg', show_label=False, visible=False)
                 
     btn.click(fn=parkinson, inputs=inpt, outputs=[output1, output2])
     with gr.Column():
-        examples = gr.Examples(examples=[["testcase POSITIVE.csv"], ["testcase NEGATIVE.csv"]], inputs=[inpt])
+        examples = gr.Examples(examples=[["data/test_case_positive.csv"], ["data/test_case_negative.csv"]], inputs=[inpt])
 
 app.launch(share= True, inline=True)
