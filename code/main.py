@@ -29,11 +29,9 @@ def pred(csv_file):
     prediction = model.predict(X)
 
     if prediction == 1:
-        return image.load_img('data/positive_image.jpg'),
-        "This patient has Parkinson's Disease"
+        return image.load_img('data/positive_image.jpg'), "This patient has Parkinson's Disease"
     else:
-        return image.load_img('data/negative_image.jpg'),
-        "There is no sign of disease in this patient"
+        return image.load_img('data/negative_image.jpg'), "There is no sign of disease in this patient"
 
 
 with gr.Blocks(css="#img0, #img1 {background:#0B0F19}") as app:
