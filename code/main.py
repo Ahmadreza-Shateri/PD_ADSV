@@ -58,7 +58,7 @@ with gr.Blocks(css="#img0, #img1 {background:#0B0F19}") as app:
             output2 = gr.outputs.Textbox(label='Result:')
             btn = gr.Button("Submit", elem_id="btn0")
         with gr.Column():
-            img1 = gr.Image('data/ribbon_image.svg', show_label=False, visible=False)
+            img1 = gr.Image('../data/ribbon_image.svg', show_label=False, visible=False)
     btn.click(fn=pred, inputs=inpt, outputs=[output1, output2])
     with gr.Column():
         examples = gr.Examples(examples=[["../data/test_case_positive.csv"], ["../data/test_case_negative.csv"]], inputs=[inpt])
